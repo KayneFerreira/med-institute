@@ -16,7 +16,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -25,7 +24,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+// @Builder
 // @IdClass(AppointmentId.class)
 public class AppointmentEntity implements Serializable {
 
@@ -42,12 +41,12 @@ public class AppointmentEntity implements Serializable {
     private LocalTime time;
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "doctor_appointment")
     private DoctorEntity doctor;
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "client_appointment")
     private ClientEntity client;
 

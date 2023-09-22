@@ -52,21 +52,57 @@ public class ClientService {
     }
 
 
+    // /*
+    //  * Update an existing Client (Builder)
+    //  */
+    // public ClientEntity update(ClientEntity client, Long id) {
+    //     ClientEntity updateClient = repository.findById(id).get();
+    //     updateClient = ClientEntity.builder()
+    //         .id(client.getId())
+    //         .name(client.getName())
+    //         .cpf(client.getCpf())
+    //         .email(client.getEmail())
+    //         .phone(client.getPhone())
+    //         .birthDate(client.getBirthDate())
+    //         .sex(client.getSex())
+    //         .clientAddress(client.getClientAddress())
+    //         .build();
+    //     return repository.save(updateClient);
+    // }
+
+
+    // /*
+    //  * Update an existing Client (Builder)
+    //  */
+    // public ClientEntity update(ClientEntity client, Long id) {
+    //     ClientEntity updateClient = repository.findById(id).get();
+    //     updateClient = ClientEntity.builder()
+    //         .id(client.getId())
+    //         .name(client.getName())
+    //         .cpf(client.getCpf())
+    //         .email(client.getEmail())
+    //         .phone(client.getPhone())
+    //         .birthDate(client.getBirthDate())
+    //         .sex(client.getSex())
+    //         .clientAddress(client.getClientAddress())
+    //         .build();
+    //     return repository.save(updateClient);
+    // }
+
+
     /*
      * Update an existing Client (Builder)
      */
     public ClientEntity update(ClientEntity client, Long id) {
         ClientEntity updateClient = repository.findById(id).get();
-        updateClient = ClientEntity.builder()
-            .id(client.getId())
-            .name(client.getName())
-            .cpf(client.getCpf())
-            .email(client.getEmail())
-            .phone(client.getPhone())
-            .birthDate(client.getBirthDate())
-            .sex(client.getSex())
-            .clientAddress(client.getClientAddress())
-            .build();
+        updateClient.setId(client.getId());
+        updateClient.setName(client.getName());
+        updateClient.setCpf(client.getCpf());
+        updateClient.setEmail(client.getEmail());
+        updateClient.setPhone(client.getPhone());
+        updateClient.setSex(client.getSex());
+        updateClient.setBirthDate(client.getBirthDate());
+        updateClient.setClientAddress(client.getClientAddress());
         return repository.save(updateClient);
     }
 

@@ -53,23 +53,42 @@ public class DoctorService {
     }
 
 
+    // /*
+    //  * Update an existing Doctor (Builder)
+    //  */
+    // public DoctorEntity update(DoctorEntity doctor, Long id) {
+    //     DoctorEntity updateDoctor = repository.findById(id).get();
+    //     updateDoctor = DoctorEntity.builder()
+    //         .id(doctor.getId())
+    //         .name(doctor.getName())
+    //         .cpf(doctor.getCpf())
+    //         .specialty(doctor.getSpecialty())
+    //         .crm(doctor.getCrm())
+    //         .email(doctor.getEmail())
+    //         .phone(doctor.getPhone())
+    //         .birthDate(doctor.getBirthDate())
+    //         .sex(doctor.getSex())
+    //         .medicAddress(doctor.getMedicAddress())
+    //         .build();
+    //     return repository.save(updateDoctor);
+    // }
+
+
     /*
      * Update an existing Doctor (Builder)
      */
     public DoctorEntity update(DoctorEntity doctor, Long id) {
         DoctorEntity updateDoctor = repository.findById(id).get();
-        updateDoctor = DoctorEntity.builder()
-            .id(doctor.getId())
-            .name(doctor.getName())
-            .cpf(doctor.getCpf())
-            .specialty(doctor.getSpecialty())
-            .crm(doctor.getCrm())
-            .email(doctor.getEmail())
-            .phone(doctor.getPhone())
-            .birthDate(doctor.getBirthDate())
-            .sex(doctor.getSex())
-            .medicAddress(doctor.getMedicAddress())
-            .build();
+        updateDoctor.setId(doctor.getId());
+        updateDoctor.setName(doctor.getName());
+        updateDoctor.setCpf(doctor.getCpf());
+        updateDoctor.setCrm(doctor.getCrm());
+        updateDoctor.setEmail(doctor.getEmail());
+        updateDoctor.setPhone(doctor.getPhone());
+        updateDoctor.setSex(doctor.getSex());
+        updateDoctor.setBirthDate(doctor.getBirthDate());
+        updateDoctor.setSpecialty(doctor.getSpecialty());
+        updateDoctor.setMedicAddress(doctor.getMedicAddress());
         return repository.save(updateDoctor);
     }
 

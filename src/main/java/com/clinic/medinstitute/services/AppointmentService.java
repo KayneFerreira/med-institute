@@ -44,18 +44,32 @@ public class AppointmentService {
     }
 
 
+    // /*
+    //  * Update an existing Appointment (Builder)
+    //  */
+    // public AppointmentEntity update(AppointmentEntity appointment, Long id) {
+    //     AppointmentEntity updatedAppointment = repository.findById(id).get();
+    //     updatedAppointment = AppointmentEntity.builder()
+    //         .date(appointment.getDate())
+    //         .time(appointment.getTime())
+    //         .doctor(appointment.getDoctor())
+    //         .client(appointment.getClient())
+    //         .build();
+    //     return repository.save(updatedAppointment);
+    // }
+
+
     /*
      * Update an existing Appointment (Builder)
      */
     public AppointmentEntity update(AppointmentEntity appointment, Long id) {
-        AppointmentEntity updatedAppointment = repository.findById(id).get();
-        updatedAppointment = AppointmentEntity.builder()
-            .date(appointment.getDate())
-            .time(appointment.getTime())
-            .doctor(appointment.getDoctor())
-            .client(appointment.getClient())
-            .build();
-        return repository.save(updatedAppointment);
+        AppointmentEntity updateAppointment = repository.findById(id).get();
+        updateAppointment.setId(appointment.getId());
+        updateAppointment.setDate(appointment.getDate());
+        updateAppointment.setTime(appointment.getTime());
+        updateAppointment.setClient(appointment.getClient());
+        updateAppointment.setDoctor(appointment.getDoctor());
+        return repository.save(updateAppointment);
     }
 
 
