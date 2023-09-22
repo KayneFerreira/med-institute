@@ -6,12 +6,11 @@ import java.time.LocalTime;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.clinic.medinstitute.entities.id.AppointmentId;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -27,26 +26,26 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@IdClass(AppointmentId.class)
+// @IdClass(AppointmentId.class)
 public class AppointmentEntity implements Serializable {
-    
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
-    @Id
     @NotNull
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime time;
 
-    @Id
     @NotNull
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "doctor_appointment")
     private DoctorEntity doctor;
 
-    @Id
     @NotNull
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "client_appointment")

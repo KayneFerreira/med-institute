@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.clinic.medinstitute.entities.AppointmentEntity;
-import com.clinic.medinstitute.entities.id.AppointmentId;
 import com.clinic.medinstitute.services.AppointmentService;
 
 import jakarta.validation.Valid;
@@ -74,7 +73,7 @@ public class AppointmentController {
     @PutMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
     public AppointmentEntity updateAppointment(@Valid @RequestBody AppointmentEntity appointment, 
-                                            @PathVariable @NotBlank @Positive AppointmentId id) {
+                                            @PathVariable @NotBlank @Positive Long id) {
         return service.update(appointment, id);
     }
 
@@ -84,7 +83,7 @@ public class AppointmentController {
      */
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void deleteAppointment(@PathVariable @NotBlank @Positive AppointmentId id) {
+    public void deleteAppointment(@PathVariable @NotBlank @Positive Long id) {
         service.delete(id);
     }
     

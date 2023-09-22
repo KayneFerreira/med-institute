@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.clinic.medinstitute.entities.AppointmentEntity;
-import com.clinic.medinstitute.entities.id.AppointmentId;
 import com.clinic.medinstitute.repositories.AppointmentRepository;
 
 @Service
@@ -48,7 +47,7 @@ public class AppointmentService {
     /*
      * Update an existing Appointment (Builder)
      */
-    public AppointmentEntity update(AppointmentEntity appointment, AppointmentId id) {
+    public AppointmentEntity update(AppointmentEntity appointment, Long id) {
         AppointmentEntity updatedAppointment = repository.findById(id).get();
         updatedAppointment = AppointmentEntity.builder()
             .date(appointment.getDate())
@@ -63,7 +62,7 @@ public class AppointmentService {
     /*
      * Delete an existing Appointment
      */
-    public void delete(AppointmentId id) {
+    public void delete(Long id) {
          repository.delete(repository.findById(id).get());
     }
 }

@@ -7,9 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.clinic.medinstitute.entities.AppointmentEntity;
-import com.clinic.medinstitute.entities.id.AppointmentId;
 
-public interface AppointmentRepository extends JpaRepository<AppointmentEntity, AppointmentId>{
+public interface AppointmentRepository extends JpaRepository<AppointmentEntity, Long>{
 
     @Query("")
     List<AppointmentEntity> findByClientName(@Param("name") String name);
