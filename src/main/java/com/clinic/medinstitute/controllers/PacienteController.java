@@ -14,23 +14,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.clinic.medinstitute.entities.DoctorEntity;
-import com.clinic.medinstitute.services.DoctorService;
+import com.clinic.medinstitute.entities.Paciente;
+import com.clinic.medinstitute.services.PacienteService;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 
 @RestController
-@RequestMapping("/api/v4/test/doctors")
-public class DoctorController {
+@RequestMapping("/api/v4/test/pacientes")
+public class PacienteController {
     
     /*
      * Dependency injection
      */
-    private DoctorService service;
-    
-    private DoctorController(DoctorService service) {
+    private PacienteService service;
+    private PacienteController(PacienteService service) {
         this.service = service;
     }
 
@@ -41,7 +40,7 @@ public class DoctorController {
     @GetMapping
     @ResponseBody
     @ResponseStatus(code = HttpStatus.OK)
-    public List<DoctorEntity> findAllDoctors() {
+    public List<Paciente> findAll() {
         return service.findAll();
     }
 
@@ -52,7 +51,7 @@ public class DoctorController {
     @GetMapping("/{id}")
     @ResponseBody
     @ResponseStatus(code = HttpStatus.OK)
-    public DoctorEntity findDoctorById(@PathVariable @NotBlank @Positive Long id) {
+    public Paciente findById(@PathVariable @NotBlank @Positive Long id) {
         return service.findById(id);
     }
 
@@ -62,8 +61,8 @@ public class DoctorController {
      */
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public DoctorEntity insertNewDoctor(@Valid @RequestBody DoctorEntity medic) {
-        return service.insert(medic);
+    public Paciente insert(@Valid @RequestBody Paciente paciente) {
+        return service.insert(paciente);
     }
 
 
@@ -72,8 +71,8 @@ public class DoctorController {
      */
     @PutMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
-    public DoctorEntity updateDoctor(@Valid @RequestBody DoctorEntity medic, @PathVariable @NotBlank @Positive Long id) {
-        return service.update(medic, id);
+    public Paciente update(@Valid @RequestBody Paciente paciente, @PathVariable @NotBlank @Positive Long id) {
+        return service.update(paciente, id);
     }
 
 
@@ -82,7 +81,7 @@ public class DoctorController {
      */
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void deleteDoctor(@PathVariable @NotBlank @Positive Long id) {
+    public void delete(@PathVariable @NotBlank @Positive Long id) {
         service.delete(id);
     }
 

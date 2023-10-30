@@ -14,22 +14,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.clinic.medinstitute.entities.ClientEntity;
-import com.clinic.medinstitute.services.ClientService;
+import com.clinic.medinstitute.entities.Medico;
+import com.clinic.medinstitute.services.MedicoService;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 
 @RestController
-@RequestMapping("/api/v4/test/clients")
-public class ClientController {
+@RequestMapping("/api/v4/test/medicos")
+public class MedicoController {
     
     /*
      * Dependency injection
      */
-    private ClientService service;
-    private ClientController(ClientService service) {
+    private MedicoService service;
+    
+    private MedicoController(MedicoService service) {
         this.service = service;
     }
 
@@ -40,7 +41,7 @@ public class ClientController {
     @GetMapping
     @ResponseBody
     @ResponseStatus(code = HttpStatus.OK)
-    public List<ClientEntity> findAllClients() {
+    public List<Medico> findAll() {
         return service.findAll();
     }
 
@@ -51,7 +52,7 @@ public class ClientController {
     @GetMapping("/{id}")
     @ResponseBody
     @ResponseStatus(code = HttpStatus.OK)
-    public ClientEntity findClientByCpf(@PathVariable @NotBlank @Positive Long id) {
+    public Medico findById(@PathVariable @NotBlank @Positive Long id) {
         return service.findById(id);
     }
 
@@ -61,8 +62,8 @@ public class ClientController {
      */
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public ClientEntity insertNewClient(@Valid @RequestBody ClientEntity client) {
-        return service.insert(client);
+    public Medico insert(@Valid @RequestBody Medico medico) {
+        return service.insert(medico);
     }
 
 
@@ -71,8 +72,8 @@ public class ClientController {
      */
     @PutMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
-    public ClientEntity updateClient(@Valid @RequestBody ClientEntity client, @PathVariable @NotBlank @Positive Long id) {
-        return service.update(client, id);
+    public Medico update(@Valid @RequestBody Medico medico, @PathVariable @NotBlank @Positive Long id) {
+        return service.update(medico, id);
     }
 
 
@@ -81,7 +82,7 @@ public class ClientController {
      */
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void deleteClient(@PathVariable @NotBlank @Positive Long id) {
+    public void delete(@PathVariable @NotBlank @Positive Long id) {
         service.delete(id);
     }
 

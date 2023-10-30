@@ -5,69 +5,65 @@ import java.io.Serializable;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.NumberFormat;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
-@Entity
-@Table(name = "tb_doctor")
+@MappedSuperclass
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-// @Builder
-public class DoctorEntity implements Serializable {
+@SuperBuilder
+public abstract class Pessoa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @NotBlank
     @Length(min = 4)
-    private String name;
+    private String nome;
 
     @NotBlank
     @NumberFormat
     @Length(min = 11, max = 11)
     private String cpf;
 
-    @NotBlank
-    private String specialty;
-
-    @NotBlank
-    @Pattern(
-        regexp = "^CRM\\/[A-Z]{2} [0-9]{6}$",
-        message = "Format not valid for field 'CRM'."
-        )
-    private String crm;
-
     @NumberFormat
     @Length(min = 9, max = 14)
-    private String phone;
+    private String telefone;
     
     @Email
     private String email;
 
-    @Column(name = "birth_date")
+    @Column(name = "data_nascimento")
     @NotBlank
-    private String birthDate;
+    private String dataNascimento;
 
     @NotBlank
-    private String sex;
+    private String sexo;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "medic_address")
-    private UserAddress medicAddress;
+    @NotBlank
+    private String endereco;
 
+    @NotBlank
+    private String numero;
+
+    @NumberFormat
+    private String cep;
+
+    @NotBlank
+    private String cidade;
+
+    @NotBlank
+    private String estado;
+    
 }

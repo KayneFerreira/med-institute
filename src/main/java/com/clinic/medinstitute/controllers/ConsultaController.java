@@ -14,23 +14,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.clinic.medinstitute.entities.AppointmentEntity;
-import com.clinic.medinstitute.services.AppointmentService;
+import com.clinic.medinstitute.entities.Consulta;
+import com.clinic.medinstitute.services.ConsultaService;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 
 @RestController
-@RequestMapping("/api/v4/test/appointments")
-public class AppointmentController {
+@RequestMapping("/api/v4/test/consultas")
+public class ConsultaController {
 
     /*
      * Dependency injection
      */
-    private AppointmentService service;
+    private ConsultaService service;
 
-    private AppointmentController(AppointmentService service) {
+    private ConsultaController(ConsultaService service) {
         this.service = service;
     }
 
@@ -41,7 +41,7 @@ public class AppointmentController {
     @GetMapping
     @ResponseBody
     @ResponseStatus(code = HttpStatus.OK)
-    public List<AppointmentEntity> findAllAppointments() {
+    public List<Consulta> findAll() {
         return service.findAll();
     }
 
@@ -49,12 +49,12 @@ public class AppointmentController {
     /* 
      * Find Appointments in the repository by name
      */
-    @GetMapping("/name")
-    @ResponseBody
-    @ResponseStatus(code = HttpStatus.OK)
-    public List<AppointmentEntity> findAppointmentsByClientName(String clientName) {
-        return service.findByClientName(clientName);
-    }
+    // @GetMapping("/nome")
+    // @ResponseBody
+    // @ResponseStatus(code = HttpStatus.OK)
+    // public List<Consulta> findByName(String nome) {
+    //     return service.findByName(nome);
+    // }
 
 
     /*
@@ -62,8 +62,8 @@ public class AppointmentController {
      */
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public AppointmentEntity insertNewAppointment(@Valid @RequestBody AppointmentEntity appointment) {
-        return service.insert(appointment);
+    public Consulta insert(@Valid @RequestBody Consulta consulta) {
+        return service.insert(consulta);
     }
 
 
@@ -72,9 +72,9 @@ public class AppointmentController {
      */
     @PutMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
-    public AppointmentEntity updateAppointment(@Valid @RequestBody AppointmentEntity appointment, 
-                                            @PathVariable @NotBlank @Positive Long id) {
-        return service.update(appointment, id);
+    public Consulta update(@Valid @RequestBody Consulta consulta, 
+                            @PathVariable @NotBlank @Positive Long id) {
+        return service.update(consulta, id);
     }
 
 
@@ -83,7 +83,7 @@ public class AppointmentController {
      */
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void deleteAppointment(@PathVariable @NotBlank @Positive Long id) {
+    public void delete(@PathVariable @NotBlank @Positive Long id) {
         service.delete(id);
     }
     

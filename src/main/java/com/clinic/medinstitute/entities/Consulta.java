@@ -16,17 +16,18 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "tb_appointment")
+@Table(name = "tb_consulta")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-// @Builder
+@Builder
 // @IdClass(AppointmentId.class)
-public class AppointmentEntity implements Serializable {
+public class Consulta implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,20 +35,20 @@ public class AppointmentEntity implements Serializable {
     
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate date;
+    private LocalDate data;
 
     @NotNull
     @DateTimeFormat(pattern = "HH:mm")
-    private LocalTime time;
+    private LocalTime hora;
 
     @NotNull
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "doctor_appointment")
-    private DoctorEntity doctor;
+    @JoinColumn(name = "consulta_medico")
+    private Medico medico;
 
     @NotNull
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "client_appointment")
-    private ClientEntity client;
+    @JoinColumn(name = "consulta_paciente")
+    private Paciente paciente;
 
 }
