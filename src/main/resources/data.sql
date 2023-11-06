@@ -33,3 +33,19 @@ INSERT INTO tb_medico (nome, cpf, sexo, data_nascimento, email, telefone, endere
 VALUES ('Maria Decima', '04677871310', 'F', '06/06/1900', 'maria.zerada@email.com', '5511900000000', 'Rua do Medico Zero', '000', '00000000', 'Cidade 0', 'Estado 0', 'CRM/SP 000000', 'Psicologo');
 
 
+
+
+INSERT INTO tb_consulta (data, hora, id_medico, id_paciente, convenio, numero_carteira)
+VALUES ('2023-11-06', '14:30', 1, 1, 'Convenio 1', '1234567890');
+
+INSERT INTO tb_consulta (data, hora, id_medico, id_paciente, convenio, numero_carteira)
+VALUES ('2023-11-07', '15:00', 2, 2, 'Convenio 2', '9876543210');
+
+INSERT INTO tb_consulta (data, hora, id_medico, id_paciente, forma_pagamento, valor)
+VALUES ('2023-11-08', '16:30', 3, 3, 'Dinheiro', 100.00);
+
+INSERT INTO tb_consulta (data, hora, id_medico, id_paciente, forma_pagamento, valor)
+VALUES ('2023-11-09', '17:00', 4, 4, 'Cartão de Crédito', 150.00);
+
+INSERT INTO tb_consulta (data, hora, id_medico, id_paciente, convenio, numero_carteira)
+VALUES ('2023-11-10', '10:30', 5, 5, 'Convenio 3', '5432109876');

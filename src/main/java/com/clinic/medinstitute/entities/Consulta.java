@@ -1,23 +1,22 @@
 package com.clinic.medinstitute.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.clinic.medinstitute.entities.enums.TipoConsulta;
-
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,36 +32,35 @@ import lombok.NoArgsConstructor;
 public class Consulta implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @NotNull
+    @NotBlank
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate data;
 
-    @NotNull
+    @NotBlank
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime hora;
 
-    @NotNull
+    @NotBlank
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "medico")
+    @JoinColumn(name = "id_medico")
     private Medico medico;
 
-    @NotNull
+    @NotBlank
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "paciente")
+    @JoinColumn(name = "id_paciente")
     private Paciente paciente;
 
-    @NotNull
-    private TipoConsulta tipoConsulta;
+    private String convenio;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "convenio")
-    private Convenio convenio;
+    @Column(name = "numero_carteira")
+    private String numeroCarteira;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pagamento")
-    private Pagamento pagamento;
+    @Column(name = "forma_pagamento")
+    private String formaPagamento;
+
+    private BigDecimal valor;
 
 }

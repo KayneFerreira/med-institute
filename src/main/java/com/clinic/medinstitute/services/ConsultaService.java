@@ -54,23 +54,13 @@ public class ConsultaService {
             .hora(consulta.getHora())
             .medico(consulta.getMedico())
             .paciente(consulta.getPaciente())
+            .convenio(consulta.getConvenio())
+            .numeroCarteira(consulta.getNumeroCarteira())
+            .formaPagamento(consulta.getFormaPagamento())
+            .valor(consulta.getValor())
             .build();
         return repository.save(updatedConsulta);
     }
-
-
-    // /*
-    //  * Update an existing Appointment (Constructor)
-    //  */
-    // public AppointmentEntity update(AppointmentEntity appointment, Long id) {
-    //     AppointmentEntity updateAppointment = repository.findById(id).get();
-    //     updateAppointment.setId(appointment.getId());
-    //     updateAppointment.setDate(appointment.getDate());
-    //     updateAppointment.setTime(appointment.getTime());
-    //     updateAppointment.setClient(appointment.getClient());
-    //     updateAppointment.setDoctor(appointment.getDoctor());
-    //     return repository.save(updateAppointment);
-    // }
 
 
     /*
