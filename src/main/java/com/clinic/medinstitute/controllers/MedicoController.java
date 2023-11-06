@@ -3,6 +3,7 @@ package com.clinic.medinstitute.controllers;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,11 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.clinic.medinstitute.entities.Medico;
 import com.clinic.medinstitute.services.MedicoService;
 
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
-
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/v4/test/medicos")
 public class MedicoController {
     
@@ -52,7 +50,7 @@ public class MedicoController {
     @GetMapping("/{id}")
     @ResponseBody
     @ResponseStatus(code = HttpStatus.OK)
-    public Medico findById(@PathVariable @NotBlank @Positive Long id) {
+    public Medico findById(@PathVariable Long id) {
         return service.findById(id);
     }
 
@@ -62,7 +60,7 @@ public class MedicoController {
      */
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Medico insert(@Valid @RequestBody Medico medico) {
+    public Medico insert(@RequestBody Medico medico) {
         return service.insert(medico);
     }
 
@@ -72,7 +70,7 @@ public class MedicoController {
      */
     @PutMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
-    public Medico update(@Valid @RequestBody Medico medico, @PathVariable @NotBlank @Positive Long id) {
+    public Medico update(@RequestBody Medico medico, @PathVariable Long id) {
         return service.update(medico, id);
     }
 
@@ -82,7 +80,7 @@ public class MedicoController {
      */
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable @NotBlank @Positive Long id) {
+    public void delete(@PathVariable Long id) {
         service.delete(id);
     }
 

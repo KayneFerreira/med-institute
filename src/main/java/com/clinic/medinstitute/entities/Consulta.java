@@ -43,12 +43,12 @@ public class Consulta implements Serializable {
 
     @NotNull
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "consulta_medico")
+    @JoinColumn(name = "medico")
     private Medico medico;
 
     @NotNull
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "consulta_paciente")
+    @JoinColumn(name = "paciente")
     private Paciente paciente;
 
 }

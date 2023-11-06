@@ -3,14 +3,12 @@ package com.clinic.medinstitute.entities;
 import java.io.Serializable;
 
 import org.hibernate.validator.constraints.Length;
-import org.springframework.format.annotation.NumberFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,15 +31,10 @@ public abstract class Pessoa implements Serializable {
     private String nome;
 
     @NotBlank
-    @NumberFormat
-    @Length(min = 11, max = 11)
     private String cpf;
 
-    @NumberFormat
-    @Length(min = 9, max = 14)
     private String telefone;
     
-    @Email
     private String email;
 
     @Column(name = "data_nascimento")
@@ -57,7 +50,6 @@ public abstract class Pessoa implements Serializable {
     @NotBlank
     private String numero;
 
-    @NumberFormat
     private String cep;
 
     @NotBlank

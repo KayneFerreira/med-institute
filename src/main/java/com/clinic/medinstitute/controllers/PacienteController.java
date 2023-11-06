@@ -3,6 +3,7 @@ package com.clinic.medinstitute.controllers;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,11 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.clinic.medinstitute.entities.Paciente;
 import com.clinic.medinstitute.services.PacienteService;
 
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
-
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/v4/test/pacientes")
 public class PacienteController {
     
@@ -51,7 +49,7 @@ public class PacienteController {
     @GetMapping("/{id}")
     @ResponseBody
     @ResponseStatus(code = HttpStatus.OK)
-    public Paciente findById(@PathVariable @NotBlank @Positive Long id) {
+    public Paciente findById(@PathVariable Long id) {
         return service.findById(id);
     }
 
@@ -61,7 +59,7 @@ public class PacienteController {
      */
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Paciente insert(@Valid @RequestBody Paciente paciente) {
+    public Paciente insert(@RequestBody Paciente paciente) {
         return service.insert(paciente);
     }
 
@@ -71,7 +69,7 @@ public class PacienteController {
      */
     @PutMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
-    public Paciente update(@Valid @RequestBody Paciente paciente, @PathVariable @NotBlank @Positive Long id) {
+    public Paciente update(@RequestBody Paciente paciente, @PathVariable Long id) {
         return service.update(paciente, id);
     }
 
@@ -81,7 +79,7 @@ public class PacienteController {
      */
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable @NotBlank @Positive Long id) {
+    public void delete(@PathVariable Long id) {
         service.delete(id);
     }
 

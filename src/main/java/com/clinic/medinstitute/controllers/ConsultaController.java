@@ -3,6 +3,7 @@ package com.clinic.medinstitute.controllers;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,11 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.clinic.medinstitute.entities.Consulta;
 import com.clinic.medinstitute.services.ConsultaService;
 
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
-
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/v4/test/consultas")
 public class ConsultaController {
 
@@ -62,7 +60,7 @@ public class ConsultaController {
      */
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Consulta insert(@Valid @RequestBody Consulta consulta) {
+    public Consulta insert(@RequestBody Consulta consulta) {
         return service.insert(consulta);
     }
 
@@ -72,8 +70,7 @@ public class ConsultaController {
      */
     @PutMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
-    public Consulta update(@Valid @RequestBody Consulta consulta, 
-                            @PathVariable @NotBlank @Positive Long id) {
+    public Consulta update(@RequestBody Consulta consulta, @PathVariable Long id) {
         return service.update(consulta, id);
     }
 
@@ -83,7 +80,7 @@ public class ConsultaController {
      */
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable @NotBlank @Positive Long id) {
+    public void delete(@PathVariable Long id) {
         service.delete(id);
     }
     

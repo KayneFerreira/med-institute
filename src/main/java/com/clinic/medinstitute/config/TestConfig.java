@@ -1,8 +1,5 @@
 package com.clinic.medinstitute.config;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -11,9 +8,6 @@ import org.springframework.context.annotation.Profile;
 import com.clinic.medinstitute.controllers.ConsultaController;
 import com.clinic.medinstitute.controllers.MedicoController;
 import com.clinic.medinstitute.controllers.PacienteController;
-import com.clinic.medinstitute.entities.Consulta;
-import com.clinic.medinstitute.entities.Medico;
-import com.clinic.medinstitute.entities.Paciente;
 
 @Configuration
 @Profile("test")
@@ -31,47 +25,47 @@ public class TestConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         
-        Paciente cl1 = Paciente.builder()
-            .nome("Roberto Rongo")
-            .cpf("25200628512")
-            .email("roberto.rongo@email.com")
-            .telefone("5511999887765")
-            .dataNascimento("13/12/2011")
-            .sexo("MASCULINO")
-            .endereco("Rua dos Palmares")
-            .numero("377")
-            .cep("03535355")
-            .cidade("Grurulhos")
-            .estado("Sumpaulo")
-            .build();
-        cliControl.insert(cl1);
+        // Paciente cl1 = Paciente.builder()
+        //     .nome("Roberto Rongo")
+        //     .cpf("25200628512")
+        //     .email("roberto.rongo@email.com")
+        //     .telefone("5511999887765")
+        //     .dataNascimento("13/12/2011")
+        //     .sexo("MASCULINO")
+        //     .endereco("Rua dos Palmares")
+        //     .numero("377")
+        //     .cep("03535355")
+        //     .cidade("Grurulhos")
+        //     .estado("Sumpaulo")
+        //     .build();
+        // cliControl.insert(cl1);
 
 
-        Medico dr1 = Medico.builder()
-            .nome("Hanz Chucrutes")
-            .cpf("41450467652")
-            .crm("CRM/SP 123123")
-            .especialidade("Traumatologista")
-            .email("hanz.churutes@docmail.com")
-            .telefone("5511977441122")
-            .dataNascimento("20/01/1987")
-            .sexo("M")
-            .endereco("Rua Hanks Tobias Ton")
-            .numero("21")
-            .cep("12124447")
-            .cidade("Ceará")
-            .estado("Porto de Galinhas")
-            .build();
-        docControl.insert(dr1);
+        // Medico dr1 = Medico.builder()
+        //     .nome("Hanz Chucrutes")
+        //     .cpf("41450467652")
+        //     .crm("CRM/SP 123123")
+        //     .especialidade("Traumatologista")
+        //     .email("hanz.churutes@docmail.com")
+        //     .telefone("5511977441122")
+        //     .dataNascimento("20/01/1987")
+        //     .sexo("M")
+        //     .endereco("Rua Hanks Tobias Ton")
+        //     .numero("21")
+        //     .cep("12124447")
+        //     .cidade("Ceará")
+        //     .estado("Porto de Galinhas")
+        //     .build();
+        // docControl.insert(dr1);
 
 
-        Consulta ap1 = Consulta.builder()
-            .data(LocalDate.parse("2019-07-21"))
-            .hora(LocalTime.parse("10:15"))
-            .medico(dr1)
-            .paciente(cl1)
-            .build();
-        aptControl.insert(ap1);
+        // Consulta ap1 = Consulta.builder()
+        //     .data(LocalDate.parse("2019-07-21"))
+        //     .hora(LocalTime.parse("10:15"))
+        //     .medico(dr1)
+        //     .paciente(cl1)
+        //     .build();
+        // aptControl.insert(ap1);
         
     }
 
