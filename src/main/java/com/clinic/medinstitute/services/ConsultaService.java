@@ -50,6 +50,7 @@ public class ConsultaService {
     public Consulta update(Consulta consulta, Long id) {
         Consulta updatedConsulta = repository.findById(id).get();
         updatedConsulta = Consulta.builder()
+            .id(consulta.getId())
             .data(consulta.getData())
             .hora(consulta.getHora())
             .medico(consulta.getMedico())

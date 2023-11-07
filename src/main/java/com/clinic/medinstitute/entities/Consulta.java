@@ -16,7 +16,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,20 +35,20 @@ public class Consulta implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @NotBlank
+    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate data;
 
-    @NotBlank
+    @NotNull
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime hora;
 
-    @NotBlank
+    @NotNull
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_medico")
     private Medico medico;
 
-    @NotBlank
+    @NotNull
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_paciente")
     private Paciente paciente;

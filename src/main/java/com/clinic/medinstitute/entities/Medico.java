@@ -1,5 +1,7 @@
 package com.clinic.medinstitute.entities;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
@@ -16,11 +18,12 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
-public class Medico extends Pessoa {
+public class Medico extends Pessoa implements Serializable {
 
     @NotBlank
     private String especialidade;
 
     @NotBlank
     private String crm;
+
 }
