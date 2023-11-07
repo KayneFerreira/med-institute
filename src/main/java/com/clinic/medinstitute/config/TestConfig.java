@@ -1,26 +1,21 @@
 package com.clinic.medinstitute.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-
-import com.clinic.medinstitute.controllers.ConsultaController;
-import com.clinic.medinstitute.controllers.MedicoController;
-import com.clinic.medinstitute.controllers.PacienteController;
 
 @Configuration
 @Profile("test")
 public class TestConfig implements CommandLineRunner {
 
-    @Autowired
-    private PacienteController cliControl;
+    // @Autowired
+    // private PacienteController cliControl;
 
-    @Autowired
-    private MedicoController docControl;
+    // @Autowired
+    // private MedicoController docControl;
 
-    @Autowired
-    private ConsultaController aptControl;
+    // @Autowired
+    // private ConsultaController aptControl;
 
     @Override
     public void run(String... args) throws Exception {
