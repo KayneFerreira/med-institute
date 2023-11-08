@@ -1,8 +1,10 @@
 package com.clinic.medinstitute.entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,9 +40,10 @@ public abstract class Pessoa implements Serializable {
     
     private String email;
 
+    @NotNull
     @Column(name = "data_nascimento")
-    @NotBlank
-    private String dataNascimento;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dataNascimento;
 
     @NotBlank
     private String sexo;

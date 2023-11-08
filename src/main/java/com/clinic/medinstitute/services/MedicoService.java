@@ -7,9 +7,6 @@ import org.springframework.stereotype.Service;
 import com.clinic.medinstitute.entities.Medico;
 import com.clinic.medinstitute.repositories.MedicoRepository;
 import com.clinic.medinstitute.services.exceptions.RecordNotFoundException;
-import com.clinic.medinstitute.services.util.Validator;
-
-import jakarta.validation.ValidationException;
 
 @Service
 public class MedicoService {
@@ -45,11 +42,7 @@ public class MedicoService {
      * Insert a new Doctor in the repository
      */
     public Medico insert(Medico medico) {
-        boolean cpf = Validator.validateCpf(medico.getCpf());
-        if (cpf) {
-            return repository.save(medico);
-        }
-        throw new ValidationException("Could not validate entity.");
+        return repository.save(medico);
     }
 
 

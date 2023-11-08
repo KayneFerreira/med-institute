@@ -41,11 +41,6 @@ public class PacienteService {
      * Insert a new Client in the repository
      */
     public Paciente insert(Paciente paciente) {
-        // boolean cpf = Validator.validateCpf(paciente.getCpf());
-        // if (cpf) {
-        //     return repository.save(paciente);
-        // }
-        // throw new ValidationException("Could not validate entity. CPF not valid.");
         return repository.save(paciente);
     }
 
@@ -71,23 +66,6 @@ public class PacienteService {
             .build();
         return repository.save(updateClient);
     }
-
-
-    // /*
-    //  * Update an existing Client (Constructor)
-    //  */
-    // public ClientEntity update(ClientEntity client, Long id) {
-    //     ClientEntity updateClient = repository.findById(id).get();
-    //     updateClient.setId(client.getId());
-    //     updateClient.setName(client.getName());
-    //     updateClient.setCpf(client.getCpf());
-    //     updateClient.setEmail(client.getEmail());
-    //     updateClient.setPhone(client.getPhone());
-    //     updateClient.setSex(client.getSex());
-    //     updateClient.setBirthDate(client.getBirthDate());
-    //     updateClient.setClientAddress(client.getClientAddress());
-    //     return repository.save(updateClient);
-    // }
 
 
     /*
